@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class loginService {
+public class UserService {
     @Autowired
     userRepo userrepo;
 
@@ -17,4 +17,7 @@ public class loginService {
         return userrepo.findAll();
     }
 
+    public void addUser(User user) {
+        userrepo.save(user);
+    }
 }
