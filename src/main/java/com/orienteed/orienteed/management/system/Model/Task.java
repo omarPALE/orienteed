@@ -1,23 +1,23 @@
 package com.orienteed.orienteed.management.system.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
+@Data
 public class Task {
 
     @Id
-    private int task_id;
-    private String task_title;
-    private String task_description;
-    private String task_status;
-    @ManyToOne
+    private int taskId;
+    private String taskTitle;
+    private String taskDescription;
+    private String taskStatus;
+    @ManyToOne //many tasks to one project
     @JoinColumn(name="project_id", nullable = false)
     private Project project;
-
-//        Task (id, title, description, status, project_id, consultant_id)
+    @ManyToOne  // Many tasks to one user(consultant)
+    @JoinColumn(name = "user_id")
+    private User user2;
 }
