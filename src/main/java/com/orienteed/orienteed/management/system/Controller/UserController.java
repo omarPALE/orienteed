@@ -31,10 +31,14 @@ public class UserController {
         validUsername = userNameMatcher.find();
     //Password Validation
         boolean validPassword= false;
-        Pattern passwordPattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
+        Pattern passwordPattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{13,}$");
         Matcher passwordMatcher =passwordPattern.matcher(user.getUserPassword());
         validPassword = passwordMatcher.find();
-
+    //Role validation
+        boolean validRole= false;
+        Pattern rolePattern = Pattern.compile("^(admin|project manager|consultant)$\n");
+        Matcher roleMatcher =rolePattern.matcher(user.getRole());
+        validRole = roleMatcher.find();
 
     userService.addUser(user);
     }
