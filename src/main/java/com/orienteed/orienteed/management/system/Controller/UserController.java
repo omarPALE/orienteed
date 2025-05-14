@@ -20,16 +20,20 @@ public class UserController {
     @PostMapping("/signup")
     public void addUser(@RequestBody User user) {
     //email validation
-    boolean validEmail= false;
-    Pattern pat= Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
-    Matcher match =pat.matcher(user.getUserEmail());
-    validEmail = match.find();
+        boolean validEmail= false;
+        Pattern pat= Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        Matcher match =pat.matcher(user.getUserEmail());
+        validEmail = match.find();
     //userName validation
-    boolean validUsername= false;
-    Pattern userNamePattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
-    Matcher userNameMatcher =userNamePattern.matcher(user.getUserName());
-    validUsername = userNameMatcher.find();
+        boolean validUsername= false;
+        Pattern userNamePattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        Matcher userNameMatcher =userNamePattern.matcher(user.getUserName());
+        validUsername = userNameMatcher.find();
     //Password Validation
+        boolean validPassword= false;
+        Pattern passwordPattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
+        Matcher passwordMatcher =passwordPattern.matcher(user.getUserPassword());
+        validPassword = passwordMatcher.find();
 
 
     userService.addUser(user);
