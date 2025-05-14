@@ -1,22 +1,32 @@
 package com.orienteed.orienteed.management.system.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import lombok.Data;
-import org.springframework.stereotype.Component;
+import jakarta.persistence.*;
 
-@Component
 @Entity
-@Data
+
 public class Report {
 
     @Id
+    @GeneratedValue
     private int reportID;
     private String reportContent;
     @OneToOne
-    @JoinColumn(name = "taskId", nullable = true)
+    @JoinColumn(name = "task_id", nullable = true)
     private Task task;
 
+    public String getReportContent() {
+        return reportContent;
+    }
+
+    public void setReportContent(String reportContent) {
+        this.reportContent = reportContent;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
 }

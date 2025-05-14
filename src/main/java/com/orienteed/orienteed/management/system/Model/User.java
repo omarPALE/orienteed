@@ -1,21 +1,71 @@
 package com.orienteed.orienteed.management.system.Model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
-import org.springframework.stereotype.Component;
+import jakarta.persistence.*;
 
-@Component
+
 @Entity
 @Table(name = "\"user\"")
-@Data
+
 public class User {
     @Id
+    @Column(name = "user_id")
+    @GeneratedValue
     private int userId;
     private String userName;
     private String userPassword;
     private String userEmail;
     private String role;
+
+    public User() {
+
+    }
+
+    @Override
+    public String toString(){
+    return "Usr info {" +
+            "username:" +userName+
+            "password:" +userPassword+
+            "}";
+    }
+
+    public User(int userId, String userName, String userPassword, String userEmail, String role) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userEmail = userEmail;
+        this.role = role;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }
