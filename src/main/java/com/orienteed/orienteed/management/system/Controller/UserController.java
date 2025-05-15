@@ -39,15 +39,17 @@ public class UserController {
         Pattern rolePattern = Pattern.compile("^(admin|project manager|consultant)$\n");
         Matcher roleMatcher =rolePattern.matcher(user.getRole());
         validRole = roleMatcher.find();
-    if(!validEmail || !validUsername || !validPassword || !validRole){
-        System.err.print("invalid input!!!");
-        return;
-    }
-    else {
-        System.out.print("valid input!!!");
+//    if(!validEmail || !validUsername || !validPassword || !validRole){
+//        System.err.print("invalid input!!!");
+//        return;
+//    }
+//    else {
+//        System.out.print("valid input!!!");
+//
+//        userService.addUser(user);
+//    }
 
         userService.addUser(user);
-    }
     }
 
     @RequestMapping("users")
