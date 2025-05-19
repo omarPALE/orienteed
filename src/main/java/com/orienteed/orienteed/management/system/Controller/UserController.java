@@ -52,6 +52,11 @@ public class UserController {
         userService.addUser(user);
     }
 
+    @PostMapping("/login")
+    public String login(@RequestBody User user) {
+        return userService.verify(user);
+    }
+
     @RequestMapping("users")
     public List<User> getUsers() {
         return userService.getUsers();
