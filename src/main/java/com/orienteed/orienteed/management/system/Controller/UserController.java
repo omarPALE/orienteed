@@ -2,6 +2,7 @@ package com.orienteed.orienteed.management.system.Controller;
 
 import com.orienteed.orienteed.management.system.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,7 +57,7 @@ public class UserController {
     public String login(@RequestBody User user) {
         return userService.verify(user);
     }
-
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping("users")
     public List<User> getUsers() {
         return userService.getUsers();

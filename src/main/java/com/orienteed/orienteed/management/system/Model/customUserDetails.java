@@ -8,8 +8,12 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+
 public class customUserDetails implements UserDetails {
-    private  User user;
+    private final User user;
+
+
 
     public customUserDetails(User user) {
         this.user = user;
@@ -17,7 +21,7 @@ public class customUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" +user.getRole()));
     }
 
     @Override
