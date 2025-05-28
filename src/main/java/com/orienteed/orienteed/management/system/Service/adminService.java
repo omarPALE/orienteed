@@ -39,4 +39,17 @@ public class adminService {
 
         return ResponseEntity.ok("success");
     }
+
+    public ResponseEntity<?> deleteClient(String name) {
+        int id =clientdb.findByClientName(name).getClientId();
+//        Client c =new Client();
+//        c  = clientdb.findByClientName(name);
+//        System.out.println(c.toString());
+
+        if( clientdb.findByClientName(name).getClientId()==id) {
+            clientdb.deleteById(id);
+            return ResponseEntity.ok("success");
+        }
+        else return ResponseEntity.notFound().build();
+    }
 }

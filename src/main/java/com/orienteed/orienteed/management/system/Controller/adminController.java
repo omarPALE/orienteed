@@ -4,19 +4,12 @@ import com.orienteed.orienteed.management.system.Model.Client;
 import com.orienteed.orienteed.management.system.Service.adminService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.*;
+
+
 
 @RestController
 public class adminController {
@@ -33,10 +26,9 @@ public class adminController {
     @PostMapping("/addClient")
     @PreAuthorize("hasRole('admin')")
     public String addClient(@Valid @RequestBody Client client) {
-
         return adminservice.addService(client);
-
     }
+
     @PatchMapping("/updateClientInfo")
     @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> updateClientInfo( @RequestBody updateClientDTO dto) {
@@ -49,28 +41,12 @@ public class adminController {
     }
 
 
+    @DeleteMapping("/deleteClient")
+    @PreAuthorize("hasRole('admin')")
+    public ResponseEntity<?> deleteClient(@RequestBody Client c) {
+
+    return adminservice.deleteClient(c.getClientName());
+    }
 
 
 }
-/*//        String ind = client.getIndustry();
-//        String email = client.getContactEmail();
-//        String name  = client.getClientName();
-//        if(name == null || name.isEmpty()) {
-//            return ResponseEntity.badRequest().build();
-//        }
-//        try {
-//            if( ind== null)
-//                return  ResponseEntity.badRequest().body("Industry or contactEmail is null");
-//            else if (ind.isEmpty()) {
-//                return  ResponseEntity.badRequest().body("Industry or contactEmail is empty");
-//            }
-//            if(email == null){
-//                return  ResponseEntity.badRequest().body("Industry or contactEmail is null");
-//            }
-//            else if(  email.isEmpty())
-//                return  ResponseEntity.badRequest().body("Industry or contactEmail is empty");
-//        }
-//        catch(Exception e) {
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
-*/

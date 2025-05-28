@@ -3,13 +3,13 @@ package com.orienteed.orienteed.management.system.Model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
 
 @Entity
 
 public class Client {
+
     @Id
     @GeneratedValue
     private int clientId;
@@ -37,7 +37,13 @@ public class Client {
         this.clientName = clientName;
         this.clientId = clientId;
     }
+    public int getClientId() {
+        return clientId;
+    }
 
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
     public String getClientName() {
         return clientName;
     }
@@ -60,5 +66,15 @@ public class Client {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "clientId=" + clientId +
+                ", clientName='" + clientName + '\'' +
+                ", industry='" + industry + '\'' +
+                ", contactEmail='" + contactEmail + '\'' +
+                '}';
     }
 }
