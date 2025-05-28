@@ -57,6 +57,8 @@ public class UserController {
     public String login(@RequestBody User user) {
         return userService.verify(user);
     }
+
+
     @PreAuthorize("hasRole('admin')")
     @RequestMapping("users")
     public List<User> getUsers() {
