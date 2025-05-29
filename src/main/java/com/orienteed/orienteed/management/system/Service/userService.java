@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService {
+public class userService {
 
 
     @Autowired
@@ -48,5 +48,11 @@ public class UserService {
         }
             return "failed";
 
+    }
+
+    public boolean isProjectMangerUser(int userId) {
+
+        User user = userrepo.findById(userId).orElseThrow(()-> new RuntimeException("user not found"));
+        return user.getRole().equals("project manager");
     }
 }

@@ -3,6 +3,8 @@ import com.orienteed.orienteed.management.system.Model.User;
 import com.orienteed.orienteed.management.system.Model.updateClientDTO;
 import com.orienteed.orienteed.management.system.Model.Client;
 import com.orienteed.orienteed.management.system.Service.adminService;
+import com.orienteed.orienteed.management.system.Service.projectService;
+import com.orienteed.orienteed.management.system.Service.userService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +19,13 @@ public class adminController {
 
 
     private final adminService adminservice;
-
+    private final projectService projectservice;
+    private final userService userservice;
     @Autowired
-    public adminController(adminService adminservice) {
+    public adminController(adminService adminservice, projectService projectservice, userService userservice) {
         this.adminservice = adminservice;
+        this.projectservice = projectservice;
+        this.userservice = userservice;
     }
 
 
@@ -49,11 +54,19 @@ public class adminController {
     return adminservice.deleteClient(c.getClientName());
     }
 
-    @PostMapping
+    @PostMapping("/assignPm")
     @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> assignProjectManger(@RequestBody User user, @RequestParam int projId){
 
-        adminService.assignPM(user.getUserId());
+        if(  !projectservice.validProject(projId)  )
+
+            return  ResponseEntity.badRequest().body("Invalid project ID");
+        if( userservice.isProjectMangerUser(user.getUserId()) ){
+            adminservice.assignPM(user.getUserId(), projId);
+        }
+        else
+            return  ResponseEntity.badRequest().body("this user do not had permission to be project manager.");
+
         return ResponseEntity.ok().build();
     }
 

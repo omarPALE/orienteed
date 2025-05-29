@@ -64,4 +64,25 @@ public class Project {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "projectId='" + projectId + '\'' +
+                ", projectTitle='" + projectTitle + '\'' +
+                ", projectDescription='" + projectDescription + '\'' +
+                ", client=" + client +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", user=" + user +
+                '}';
+    }
 }

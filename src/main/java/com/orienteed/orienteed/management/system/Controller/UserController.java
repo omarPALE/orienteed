@@ -1,6 +1,5 @@
 package com.orienteed.orienteed.management.system.Controller;
 
-import com.orienteed.orienteed.management.system.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,7 @@ import java.util.regex.Pattern;
 @RestController
 public class UserController {
     @Autowired
-    UserService userService;
+    com.orienteed.orienteed.management.system.Service.userService userService;
 
     @PostMapping("/signup")
     public void addUser(@RequestBody User user) {

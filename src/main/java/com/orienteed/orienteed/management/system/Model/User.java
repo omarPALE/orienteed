@@ -21,12 +21,19 @@ public class User {
 
     }
 
+    public User(int userId) {
+        this.userId = userId;
+    }
+
     @Override
-    public String toString(){
-    return "Usr info {" +
-            "username:" +userName+
-            "password:" +userPassword+
-            "}";
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 
     public User(int userId, String userName, String userPassword, String userEmail, String role) {
