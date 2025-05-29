@@ -1,4 +1,5 @@
 package com.orienteed.orienteed.management.system.Controller;
+import com.orienteed.orienteed.management.system.Model.User;
 import com.orienteed.orienteed.management.system.Model.updateClientDTO;
 import com.orienteed.orienteed.management.system.Model.Client;
 import com.orienteed.orienteed.management.system.Service.adminService;
@@ -46,6 +47,14 @@ public class adminController {
     public ResponseEntity<?> deleteClient(@RequestBody Client c) {
 
     return adminservice.deleteClient(c.getClientName());
+    }
+
+    @PostMapping
+    @PreAuthorize("hasRole('admin')")
+    public ResponseEntity<?> assignProjectManger(@RequestBody User user, @RequestParam int projId){
+
+        adminService.assignPM(user.getUserId());
+        return ResponseEntity.ok().build();
     }
 
 

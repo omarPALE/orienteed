@@ -19,6 +19,10 @@ public class Project {
     private Client client;
     private Date startDate;
     private Date endDate;
+    @OneToOne
+    @JoinColumn(name = "user_id",nullable = true)
+    private User user;
+
 
 
     public String getProjectTitle() {

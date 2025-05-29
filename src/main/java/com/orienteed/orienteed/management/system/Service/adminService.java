@@ -18,6 +18,12 @@ public class adminService {
         this.clientdb = clientdb;
 
     }
+
+    public static void assignPM(int userId) {
+
+
+    }
+
     public String addService(Client client) {
         clientdb.save(client);
         return "success";
